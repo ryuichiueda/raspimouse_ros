@@ -27,14 +27,14 @@ echo 456 | diff - /dev/rtmotor_raw_r0
 echo 1 | diff - /dev/rtmotoren0
 
 #switch state transition test
-echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 echo 0 | sudo tee /dev/rtswitch0 && sleep 1
+echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 rostopic echo /raspimouse/switches -n 1 | grep 'ready'
 
-echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 echo 0 | sudo tee /dev/rtswitch0 && sleep 1
+echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 rostopic echo /raspimouse/switches -n 1 | grep 'run'
 
-echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 echo 0 | sudo tee /dev/rtswitch0 && sleep 1
+echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 rostopic echo /raspimouse/switches -n 1 | grep 'neutral'
