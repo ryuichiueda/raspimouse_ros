@@ -48,6 +48,7 @@ add_message_files(
   FILES
   LightSensorValues.msg
   Switches.msg
+  LeftRightFreq.msg
 )
 
 ## Generate services in the 'srv' folder
