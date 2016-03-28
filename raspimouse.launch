@@ -4,6 +4,7 @@
     <node pkg="raspimouse_ros" name="lightsensors" type="rtlightsensors.py"/>
     <node pkg="raspimouse_ros" name="rtswitches" type="rtswitches.py"/>
     <node pkg="raspimouse_ros" name="rtbuzzer" type="rtbuzzer.py"/>
+    <node pkg="raspimouse_ros" name="rtmotor" type="rtmotor.py"/>
   </group>
  
 </launch>

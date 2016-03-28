@@ -1,14 +1,22 @@
 #!/usr/bin/env python
 import sys
 import rospy
+from raspimouse_ros.srv import PutMotorFreqs
+from raspimouse_ros.srv import SwitchMotor
 from raspimouse_ros.msg import LeftRightFreq
 from std_msgs.msg import Bool
 
 def callback_motor_sw(message):
     enfile = '/tmp/rtmotoren0'
-    with open(enfile,'w') as f:
-        if message.data: print >> f, '1'
-        else:            print >> f, '0'
+
+    try:
+        with open(enfile,'w') as f:
+            if message.on: print >> f, '1'
+            else:          print >> f, '0'
+    except:
+        return False
+
+    return True
 
 def callback_motor_raw(message):
     lfile = '/tmp/rtmotor_raw_l0'
@@ -25,11 +33,21 @@ def callback_motor_raw(message):
     else:
         lf.close()
         rf.close()
+
+def callback_put_freqs(message):
+    devfile = '/tmp/rtmotor0'
+    putstr = "%s %s %s" % (message.left, message.right, message.duration)
+    print putstr
+    with open(devfile,'w') as f:
+        print >> f, putstr
+
+    return True
         
 def listner():
     rospy.init_node('rtmotor')
     sub = rospy.Subscriber('motor_raw', LeftRightFreq, callback_motor_raw)
-    sub = rospy.Subscriber('motor_sw', Bool, callback_motor_sw)
+    srv = rospy.Service('switch_motor', SwitchMotor, callback_motor_sw)
+    srv = rospy.Service('put_motor_freqs', PutMotorFreqs, callback_put_freqs)
     rospy.spin()
 
 if __name__ == '__main__':

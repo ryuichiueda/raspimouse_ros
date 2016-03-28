@@ -51,12 +51,12 @@ add_message_files(
   LeftRightFreq.msg
 )
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  PutMotorFreqs.srv
+  SwitchMotor.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(

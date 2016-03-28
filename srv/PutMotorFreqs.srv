@@ -1,0 +1,5 @@
+int16 left
+int16 right
+int32 duration
+---
+bool accepted
