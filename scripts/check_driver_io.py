@@ -6,6 +6,7 @@ from raspimouse_ros.srv import *
 from raspimouse_ros.msg import *
 from std_msgs.msg import UInt16
 
+
 def switch_motors(onoff):
     rospy.wait_for_service('/raspimouse/switch_motors')
     try:
@@ -28,10 +29,10 @@ def raw_control(left_hz,right_hz):
 
 def buzzer(hz):
     pub = rospy.Publisher('/raspimouse/buzzer', UInt16, queue_size=10)
+    rospy.init_node('operation_checker', anonymous=True)
 
     if not rospy.is_shutdown():
         pub.publish(hz)
-        print "a"
 
 def lightsensor_callback(data):
     print "lightsensors:", data.left_forward, data.left_side, data.right_side, data.right_forward
@@ -56,15 +57,11 @@ def pos_control(left_hz,right_hz,time_ms):
         return False
 
 if __name__ == "__main__":
-    rospy.init_node('operation_checker', anonymous=True)
-
     ### buzzer test ###
     print >> sys.stderr, "test of the buzzer"
     buzzer(1000)
     time.sleep(2.0)
     buzzer(0)
-
-    sys.exit(0)
 
     ### motor_raw test ###
     print >> sys.stderr, "test of raw control of the motors"
