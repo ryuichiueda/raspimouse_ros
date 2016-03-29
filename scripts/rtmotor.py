@@ -2,7 +2,7 @@
 import sys
 import rospy
 from raspimouse_ros.srv import PutMotorFreqs
-from raspimouse_ros.srv import SwitchMotor
+from raspimouse_ros.srv import SwitchMotors
 from raspimouse_ros.msg import LeftRightFreq
 from std_msgs.msg import Bool
 
@@ -22,8 +22,8 @@ def callback_motor_raw(message):
     try:
         lf = open(lfile,'w')
         rf = open(rfile,'w')
-        print >> lf, message.left
-        print >> rf, message.right
+        print >> lf, str(message.left)
+        print >> rf, str(message.right)
     except:
         print >> sys.stderr, "cannot write to rtmotor_raw_*" 
         sys.exit(1)
@@ -43,7 +43,7 @@ def callback_put_freqs(message):
 def listner():
     rospy.init_node('rtmotor')
     sub = rospy.Subscriber('motor_raw', LeftRightFreq, callback_motor_raw)
-    srv = rospy.Service('switch_motor', SwitchMotor, callback_motor_sw)
+    srv = rospy.Service('switch_motors', SwitchMotors, callback_motor_sw)
     srv = rospy.Service('put_motor_freqs', PutMotorFreqs, callback_put_freqs)
     rospy.spin()
 

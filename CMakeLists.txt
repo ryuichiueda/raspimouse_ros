@@ -55,7 +55,7 @@ add_message_files(
 add_service_files(
   FILES
   PutMotorFreqs.srv
-  SwitchMotor.srv
+  SwitchMotors.srv
 )
 
 ## Generate actions in the 'action' folder

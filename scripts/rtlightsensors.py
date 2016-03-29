@@ -2,7 +2,6 @@
 import sys
 import rospy
 from raspimouse_ros.msg import LightSensorValues
-from std_msgs.msg import String
 
 def talker():
     devfile = '/dev/rtlightsensor0'
