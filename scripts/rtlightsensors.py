@@ -5,7 +5,7 @@ from raspimouse_ros.msg import LightSensorValues
 from std_msgs.msg import String
 
 def talker():
-    devfile = '/tmp/rtlightsensor0'
+    devfile = '/dev/rtlightsensor0'
 
 
     rospy.init_node('lightsensors')
@@ -22,6 +22,7 @@ def talker():
             d.left_forward = int(data[3])
             pub.publish(d)
             rate.sleep()
+
 
 if __name__ == '__main__':
     try:

@@ -4,7 +4,7 @@ import rospy
 from raspimouse_ros.msg import Switches
 
 def talker():
-    devfile = '/tmp/rtswitch'
+    devfile = '/dev/rtswitch'
 
     rospy.init_node('switches')
     pub = rospy.Publisher('switches', Switches, queue_size=10)

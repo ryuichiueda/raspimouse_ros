@@ -7,20 +7,17 @@ from raspimouse_ros.msg import LeftRightFreq
 from std_msgs.msg import Bool
 
 def callback_motor_sw(message):
-    enfile = '/tmp/rtmotoren0'
+    enfile = '/dev/rtmotoren0'
 
-    try:
-        with open(enfile,'w') as f:
-            if message.on: print >> f, '1'
-            else:          print >> f, '0'
-    except:
-        return False
+    with open(enfile,'w') as f:
+        if message.on: print >> f, '1'
+        else:          print >> f, '0'
 
     return True
 
 def callback_motor_raw(message):
-    lfile = '/tmp/rtmotor_raw_l0'
-    rfile = '/tmp/rtmotor_raw_r0'
+    lfile = '/dev/rtmotor_raw_l0'
+    rfile = '/dev/rtmotor_raw_r0'
 
     try:
         lf = open(lfile,'w')
@@ -35,7 +32,7 @@ def callback_motor_raw(message):
         rf.close()
 
 def callback_put_freqs(message):
-    devfile = '/tmp/rtmotor0'
+    devfile = '/dev/rtmotor0'
     putstr = "%s %s %s" % (message.left, message.right, message.duration)
     print putstr
     with open(devfile,'w') as f:
