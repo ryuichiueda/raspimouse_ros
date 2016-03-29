@@ -10,25 +10,25 @@
   - 参考: https://github.com/rt-net/RaspberryPiMouse 
 1. ワークスペースを作成と当リポジトリのclone
 
-    $ mkdir -p catkin_ws/src
-    $ cd ~/catkin_ws/src
-    $ catkin_init_workspace
-    $ git clone https://github.com/ryuichiueda/raspimouse_ros.git
-    $ cd ..
-    $ catkin_make
+        $ mkdir -p catkin_ws/src
+        $ cd ~/catkin_ws/src
+        $ catkin_init_workspace
+        $ git clone https://github.com/ryuichiueda/raspimouse_ros.git
+        $ cd ..
+        $ catkin_make
 
 1. ~/.bashrcに以下の1行がない場合、追加し、ログアウト/ログイン
 
-    source /home/ubuntu/catkin_ws/devel/setup.bash
+        source /home/ubuntu/catkin_ws/devel/setup.bash
 
 1. ベースシステムの起動
 
-    $ roscd raspimouse_ros/
-    $ roslaunch raspimouse_ros raspimouse.launch 
+        $ roscd raspimouse_ros/
+        $ roslaunch raspimouse_ros raspimouse.launch 
 
 1. チェックスクリプトの実行
 
-    $ rosrun raspimouse_ros check_driver_io.py 
+        $ rosrun raspimouse_ros check_driver_io.py 
 
 
 
