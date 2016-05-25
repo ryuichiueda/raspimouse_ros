@@ -1,18 +1,14 @@
 #!/usr/bin/env python
-import sys
-import rospy
+import sys, rospy
 from raspimouse_ros.msg import LightSensorValues
 
 def talker():
-    devfile = '/dev/rtlightsensor0'
-
-
     rospy.init_node('lightsensors')
     pub = rospy.Publisher('lightsensors', LightSensorValues, queue_size=10)
     rate = rospy.Rate(10)
 
     while not rospy.is_shutdown():
-        with open(devfile,'r') as f:
+        with open('/dev/rtlightsensor0','r') as f:
             data = f.readline().split()
             d = LightSensorValues()
             d.right_forward = int(data[0])
@@ -21,7 +17,6 @@ def talker():
             d.left_forward = int(data[3])
             pub.publish(d)
             rate.sleep()
-
 
 if __name__ == '__main__':
     try:
