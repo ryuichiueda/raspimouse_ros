@@ -1,10 +1,8 @@
 <launch>
- 
   <group ns="raspimouse">
     <node pkg="raspimouse_ros" name="lightsensors" type="rtlightsensors.py"/>
-    <node pkg="raspimouse_ros" name="rtswitches" type="rtswitches.py"/>
-    <node pkg="raspimouse_ros" name="rtbuzzer" type="rtbuzzer.py"/>
-    <node pkg="raspimouse_ros" name="rtmotor" type="rtmotor.py"/>
+    <node pkg="raspimouse_ros" name="switches" type="rtswitches.py"/>
+    <node pkg="raspimouse_ros" name="buzzer" type="rtbuzzer.py"/>
+    <node pkg="raspimouse_ros" name="motor" type="rtmotor.py"/>
   </group>
- 
 </launch>
