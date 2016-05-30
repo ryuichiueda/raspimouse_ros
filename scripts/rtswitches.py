@@ -12,12 +12,15 @@ def talker():
 
     d = Switches()
     while not rospy.is_shutdown():
-        with open(devfile + '0','r') as f:
-            d.front = True if '0' in f.readline() else False
-        with open(devfile + '1','r') as f:
-            d.center = True if '0' in f.readline() else False
-        with open(devfile + '2','r') as f:
-            d.rear = True if '0' in f.readline() else False
+        try:
+            with open(devfile + '0','r') as f:
+                d.front = True if '0' in f.readline() else False
+            with open(devfile + '1','r') as f:
+                d.center = True if '0' in f.readline() else False
+            with open(devfile + '2','r') as f:
+                d.rear = True if '0' in f.readline() else False
+        except:
+            rospy.logerr("cannot open " + devfile + "[0,1,2]")
 
         pub.publish(d)
         rate.sleep()

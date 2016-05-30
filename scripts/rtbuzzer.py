@@ -4,9 +4,11 @@ from std_msgs.msg import UInt16
 
 def callback(message):
     devfile = '/dev/rtbuzzer0'
-    #rospy.loginfo("Buzzer %d", message.data)
-    with open(devfile,'w') as f:
-        print >> f, message.data
+    try:
+        with open(devfile,'w') as f:
+            print >> f, message.data
+    except:
+        rospy.logerr("cannot open " + devfile)
         
 
 def listner():
