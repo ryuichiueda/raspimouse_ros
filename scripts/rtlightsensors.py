@@ -18,9 +18,10 @@ def talker():
                 d.left_side = int(data[2])
                 d.left_forward = int(data[3])
                 pub.publish(d)
-                rate.sleep()
         except:
             rospy.logerr("cannot open " + devfile)
+
+        rate.sleep()
 
 if __name__ == '__main__':
     try:
