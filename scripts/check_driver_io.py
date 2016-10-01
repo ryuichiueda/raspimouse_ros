@@ -57,6 +57,7 @@ def pos_control(left_hz,right_hz,time_ms):
         return False
 
 if __name__ == "__main__":
+    sys.exit(1)
     ### buzzer test ###
     print >> sys.stderr, "test of the buzzer"
     buzzer(1000)
