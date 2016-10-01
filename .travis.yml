@@ -6,10 +6,11 @@ script:
   - cd ./ros_setup_scripts_Ubuntu14.04_server
   - bash ./step0.bash
   - bash ./step1.bash
-  - source ~/catkin_ws/devel/setup.bash
   - mkdir -p ~/catkin_ws/src
   - cd ~/catkin_ws/src
+  - source /opt/ros/indigo/setup.bash
   - catkin_init_workspace
   - cd ~/catkin_ws
   - catkin_make
+  - source ~/catkin_ws/devel/setup.bash
   - bash -e ./travis_test.bash
