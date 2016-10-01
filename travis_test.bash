@@ -5,7 +5,7 @@ cd ./ros_setup_scripts_Ubuntu16.04_server
 bash ./step0.bash
 bash ./step1.bash
 
-source ~/.bashrc
+source ~/catkin_ws/devel/setup.bash
 mkdir -p ~/catkin_ws/src/
 cd ~/catkin_ws/src
 catkin_init_workspace
