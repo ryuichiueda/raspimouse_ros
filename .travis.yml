@@ -2,4 +2,14 @@ sudo: required
 dist: trusty
 
 script:
+  - git clone https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu14.04_server.git
+  - cd ./ros_setup_scripts_Ubuntu14.04_server
+  - bash ./step0.bash
+  - bash ./step1.bash
+  - source ~/catkin_ws/devel/setup.bash
+  - mkdir -p ~/catkin_ws/src
+  - cd ~/catkin_ws/src
+  - catkin_init_workspace
+  - cd ~/catkin_ws
+  - catkin_make
   - bash -e ./travis_test.bash
