@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ryuichiueda/raspimouse_ros.svg?branch=master)](https://travis-ci.org/ryuichiueda/raspimouse_ros)
+
 # Raspberry Pi Mouse制御用基盤ROSパッケージ
 
 ## 使い方
