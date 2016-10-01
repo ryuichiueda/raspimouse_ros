@@ -11,3 +11,7 @@ catkin_init_workspace
 cd ~/catkin_ws
 pip install catkin_pkg
 catkin_make
+cd ~/catkin_ws/src/
+git clone https://github.com/ryuichiueda/raspimouse_ros.git
+cd ~/catkin_ws
+catkin_make
