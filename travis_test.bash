@@ -7,7 +7,7 @@ bash ./step1.bash
 
 source ~/.bashrc
 mkdir -p ~/catkin_ws/src/
-cd !$
+cd ~/catkin_ws/src
 catkin_create_pkg raspimouse_ros std_msgs rospy
 cd ~/catkin_ws
 catkin_make
