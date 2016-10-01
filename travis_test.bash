@@ -8,9 +8,9 @@ bash ./step1.bash
 source ~/.bashrc
 mkdir -p ~/catkin_ws/src/
 cd ~/catkin_ws/src
-catkin_create_pkg raspimouse_ros std_msgs rospy
+catkin_create_pkg raspimouse_ros std_msgs rospy --rosdistro kinetic
 cd ~/catkin_ws
 catkin_make
 cd ~/catkin_ws/src/
 git clone https://github.com/ryuichiueda/raspimouse_ros.git
-roslaunch raspimouse_ros raspimouse.launch
+roslaunch raspimouse_ros travis_test.launch

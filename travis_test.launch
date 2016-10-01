@@ -1,0 +1,9 @@
+<launch>
+  <group ns="raspimouse">
+    <node pkg="raspimouse_ros" name="lightsensors" type="rtlightsensors.py" required="true"/>
+    <node pkg="raspimouse_ros" name="switches" type="rtswitches.py" required="true"/>
+    <node pkg="raspimouse_ros" name="buzzer" type="rtbuzzer.py" required="true"/>
+    <node pkg="raspimouse_ros" name="motor" type="rtmotor.py" required="true"/>
+    <node pkg="raspimouse_ros" name="test" type="check_driver_io.py" required="true"/>
+  </group>
+</launch>
