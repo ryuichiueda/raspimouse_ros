@@ -2,6 +2,6 @@ sudo: required
 dist: trusty
 
 script:
-  - bash -xve ./travis_prepare.bash
+  - bash -e ./travis_prepare.bash
   - source ~/catkin_ws/devel/setup.bash
   - roslaunch raspimouse_ros travis_test.launch
