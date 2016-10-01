@@ -8,6 +8,7 @@ bash ./step1.bash
 source ~/.bashrc
 mkdir -p ~/catkin_ws/src/
 cd ~/catkin_ws/src
+PATH=$PATH:/opt/ros/indigo/bin/
 catkin_init_workspace
 cd ~/catkin_ws
 catkin_make
