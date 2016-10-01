@@ -3,8 +3,8 @@
 #add dummy files
 echo 1 2 3 4 | sudo tee /dev/rtlightsensor0
 echo 1 | sudo tee /dev/rtswitch{0,1,2}
-sudo touch /dev/rtmotor0 /dev/rtmotoren0 /dev/rtmotor_raw_{l,r}0
-sudo chmod 666 /dev/rtmotor0 /dev/rtmotoren0 /dev/rtmotor_raw_{l,r}0
+sudo touch /dev/rtmotor0 /dev/rtmotoren0 /dev/rtmotor_raw_{l,r}0 /dev/rtbuzzer0
+sudo chmod 666 /dev/rtmotor0 /dev/rtmotoren0 /dev/rtmotor_raw_{l,r}0 /dev/rtbuzzer0
 
 #required packages
 pip install catkin_pkg
