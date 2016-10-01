@@ -28,6 +28,7 @@ catkin_make
 
 #download own package
 cd ~/catkin_ws/src/
-git clone https://github.com/ryuichiueda/raspimouse_ros.git
+rsync -av ./ ~/catkin_ws/src/raspimouse_ros/
+#git clone https://github.com/ryuichiueda/raspimouse_ros.git
 cd ~/catkin_ws
 catkin_make
