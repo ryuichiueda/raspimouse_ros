@@ -11,6 +11,7 @@ script:
   - source /opt/ros/indigo/setup.bash
   - catkin_init_workspace
   - cd ~/catkin_ws
+  - pip install catkin_pkg
   - catkin_make
   - source ~/catkin_ws/devel/setup.bash
   - bash -e ./travis_test.bash
