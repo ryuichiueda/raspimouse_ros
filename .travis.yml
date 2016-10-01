@@ -4,5 +4,4 @@ dist: trusty
 script:
   - bash -xve ./travis_prepare.bash
   - source ~/catkin_ws/devel/setup.bash
-  - bash -xve ./travis_test.bash
   - roslaunch raspimouse_ros travis_test.launch
