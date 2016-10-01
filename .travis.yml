@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 
 script:
-  - apt-get install tree
+  - sudo apt-get install tree
   - tree
   - bash -e ./travis_prepare.bash
   - source ~/catkin_ws/devel/setup.bash
