@@ -3,7 +3,7 @@ import sys
 import rospy
 from raspimouse_ros.srv import PutMotorFreqs
 from raspimouse_ros.srv import SwitchMotors
-from raspimouse_ros.msg import LeftRightFreq
+from raspimouse_ros.msg import LeftRightFreqs
 from std_msgs.msg import Bool
 
 def callback_motor_sw(message):
@@ -49,7 +49,7 @@ def callback_put_freqs(message):
         
 def listner():
     rospy.init_node('rtmotor')
-    sub = rospy.Subscriber('motor_raw', LeftRightFreq, callback_motor_raw)
+    sub = rospy.Subscriber('motor_raw', LeftRightFreqs, callback_motor_raw)
     srv = rospy.Service('switch_motors', SwitchMotors, callback_motor_sw)
     srv = rospy.Service('put_motor_freqs', PutMotorFreqs, callback_put_freqs)
     rospy.spin()
