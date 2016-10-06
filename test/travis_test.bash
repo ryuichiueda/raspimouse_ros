@@ -5,7 +5,7 @@ sleep 20
 
 #publishing
 rostopic pub -1 /raspimouse/buzzer std_msgs/UInt16 -- 10
-rostopic pub -1 /raspimouse/motor_raw raspimouse_ros/LeftRightFreq '123' '456'
+rostopic pub -1 /raspimouse/motor_raw raspimouse_ros/LeftRightFreqs '123' '456'
 
 #service call
 rosservice call /raspimouse/put_motor_freqs 'left: -300
