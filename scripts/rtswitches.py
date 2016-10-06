@@ -6,7 +6,7 @@ from raspimouse_ros.msg import Switches
 def talker():
     devfile = '/dev/rtswitch'
 
-    rospy.init_node('switches')
+    rospy.init_node('rtswitches')
     pub = rospy.Publisher('switches', Switches, queue_size=10)
     rate = rospy.Rate(10)
 

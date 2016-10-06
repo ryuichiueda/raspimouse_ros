@@ -12,7 +12,7 @@ def callback(message):
         
 
 def listner():
-    rospy.init_node('buzzer')
+    rospy.init_node('rtbuzzer')
     sub = rospy.Subscriber('buzzer', UInt16, callback)
     rospy.spin()
 

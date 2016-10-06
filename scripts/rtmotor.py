@@ -48,7 +48,7 @@ def callback_put_freqs(message):
     return True
         
 def listner():
-    rospy.init_node('motor')
+    rospy.init_node('rtmotor')
     sub = rospy.Subscriber('motor_raw', LeftRightFreqs, callback_motor_raw)
     srv = rospy.Service('switch_motors', SwitchMotors, callback_motor_sw)
     srv = rospy.Service('put_motor_freqs', PutMotorFreqs, callback_put_freqs)

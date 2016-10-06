@@ -4,7 +4,7 @@ from raspimouse_ros.msg import LightSensorValues
 
 def talker():
     devfile = '/dev/rtlightsensor0'
-    rospy.init_node('lightsensors')
+    rospy.init_node('rtlightsensors')
     pub = rospy.Publisher('lightsensors', LightSensorValues, queue_size=1)
     rate = rospy.Rate(10)
 
