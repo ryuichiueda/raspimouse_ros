@@ -19,10 +19,10 @@ def switch_motors(onoff):
         return False
 
 def raw_control(left_hz,right_hz):
-    pub = rospy.Publisher('/raspimouse/motor_raw', LeftRightFreqs, queue_size=10)
+    pub = rospy.Publisher('/raspimouse/motor_raw', MotorFreqs, queue_size=10)
 
     if not rospy.is_shutdown():
-        d = LeftRightFreqs()
+        d = MotorFreqs()
         d.left = left_hz
         d.right = right_hz
         pub.publish(d)
