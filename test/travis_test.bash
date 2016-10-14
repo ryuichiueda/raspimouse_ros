@@ -25,3 +25,22 @@ echo -300 200 1000 | diff - /dev/rtmotor0
 echo 123 | diff - /dev/rtmotor_raw_l0
 echo 456 | diff - /dev/rtmotor_raw_r0
 echo 1 | diff - /dev/rtmotoren0
+
+#switch state transition test
+echo 1 > /dev/rtswitch0
+sleep 1
+echo 0 > /dev/rtswitch0
+sleep 1
+rostopic echo /raspimouse/switches -n 1 | grep 'ready'
+
+echo 1 > /dev/rtswitch0
+sleep 1
+echo 0 > /dev/rtswitch0
+sleep 1
+rostopic echo /raspimouse/switches -n 1 | grep 'run'
+
+echo 1 > /dev/rtswitch0
+sleep 1
+echo 0 > /dev/rtswitch0
+sleep 1
+rostopic echo /raspimouse/switches -n 1 | grep 'neutral'
