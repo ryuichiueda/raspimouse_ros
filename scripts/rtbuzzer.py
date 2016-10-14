@@ -3,7 +3,7 @@ import rospy
 import time
 import actionlib
 from std_msgs.msg import UInt16
-from raspimouse_ros.msg import MusicAction, MusicResult
+from raspimouse_ros.msg import MusicAction, MusicResult, MusicFeedback
 
 def put_freq(hz):
     try:
@@ -17,11 +17,15 @@ def cb(message):
 
 def exec_music(goal):
     r = MusicResult()
+    fb = MusicFeedback()
     r.finished = True
+    num = len(goal.freqs)
     for i, f in enumerate(goal.freqs):
+        fb.remaining_steps = num - i
+        ms.publish_feedback(fb)
+
         if ms.is_preempt_requested():
             put_freq(0)
-            rospy.loginfo('%s: Preempted' % 'music')
             r.finished = False
             ms.set_preempted(r)
             return
@@ -33,6 +37,8 @@ def exec_music(goal):
 
         time.sleep(t)
 
+    fb.remaining_steps = 0
+    ms.publish_feedback(fb)
     ms.set_succeeded(r)
     return
 

@@ -4,4 +4,3 @@ rostopic pub -1 /music/goal  raspimouse_ros/MusicActionGoal -- '{goal: {freqs: [
 
 sleep 2
 rostopic pub -1 /music/cancel  actionlib_msgs/GoalID -- '{}'
-
