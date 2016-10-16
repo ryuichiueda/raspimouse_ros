@@ -3,12 +3,10 @@ import sys, rospy
 from raspimouse_ros.msg import LightSensorValues
 
 if __name__ == '__main__':
-    freq = 10
-    if rospy.has_param('lightsensors_freq'):
-        freq = rospy.get_param('lightsensors_freq')
+    #freq = 10
+    #if rospy.has_param('lightsensors_freq'):
+    freq = rospy.get_param('lightsensors_freq',10)
         
-    rospy.set_param('freq', str(freq))
-
     devfile = '/dev/rtlightsensor0'
     rospy.init_node('rtlightsensors')
     pub = rospy.Publisher('lightsensors', LightSensorValues, queue_size=1)
