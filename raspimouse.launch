@@ -1,9 +1,7 @@
 <launch>
-  <group ns="raspimouse">
-    <param name="lightsensors_freq" value="10" />
-    <node pkg="raspimouse_ros" name="lightsensors" type="rtlightsensors.py" required="true" />
-    <node pkg="raspimouse_ros" name="switches" type="rtswitches.py" required="true" />
-    <node pkg="raspimouse_ros" name="buzzer" type="rtbuzzer.py" required="true" />
-    <node pkg="raspimouse_ros" name="motor" type="rtmotor.py" required="true" />
-  </group>
+  <param name="lightsensors_freq" value="10" />
+  <node pkg="raspimouse_ros" name="lightsensors" type="rtlightsensors.py" required="true" />
+  <node pkg="raspimouse_ros" name="switches" type="rtswitches.py" required="true" />
+  <node pkg="raspimouse_ros" name="buzzer" type="rtbuzzer.py" required="true" />
+  <node pkg="raspimouse_ros" name="motor" type="rtmotor.py" required="true" />
 </launch>
