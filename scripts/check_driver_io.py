@@ -8,9 +8,9 @@ from std_msgs.msg import UInt16
 
 
 def switch_motors(onoff):
-    rospy.wait_for_service('/raspimouse/switch_motors')
+    rospy.wait_for_service('/switch_motors')
     try:
-        p = rospy.ServiceProxy('/raspimouse/switch_motors', SwitchMotors)
+        p = rospy.ServiceProxy('/switch_motors', SwitchMotors)
         res = p(onoff)
         return res.accepted
     except rospy.ServiceException, e:
@@ -19,7 +19,7 @@ def switch_motors(onoff):
         return False
 
 def raw_control(left_hz,right_hz):
-    pub = rospy.Publisher('/raspimouse/motor_raw', MotorFreqs, queue_size=10)
+    pub = rospy.Publisher('/motor_raw', MotorFreqs, queue_size=10)
 
     if not rospy.is_shutdown():
         d = MotorFreqs()
@@ -28,7 +28,7 @@ def raw_control(left_hz,right_hz):
         pub.publish(d)
 
 def buzzer(hz):
-    pub = rospy.Publisher('/raspimouse/buzzer', UInt16, queue_size=10)
+    pub = rospy.Publisher('/buzzer', UInt16, queue_size=10)
     rospy.init_node('operation_checker', anonymous=True)
 
     if not rospy.is_shutdown():
@@ -41,14 +41,14 @@ def switch_callback(data):
     print "switches:",data.front, data.center, data.rear
 
 def sensors():
-    subls = rospy.Subscriber('/raspimouse/lightsensors', LightSensorValues, lightsensor_callback)
-    subsw = rospy.Subscriber('/raspimouse/switches', Switches, switch_callback)
+    subls = rospy.Subscriber('/lightsensors', LightSensorValues, lightsensor_callback)
+    subsw = rospy.Subscriber('/switches', Switches, switch_callback)
 
 
 def pos_control(left_hz,right_hz,time_ms):
-    rospy.wait_for_service('/raspimouse/put_motor_freqs')
+    rospy.wait_for_service('/put_motor_freqs')
     try:
-        p = rospy.ServiceProxy('/raspimouse/put_motor_freqs', PutMotorFreqs)
+        p = rospy.ServiceProxy('/put_motor_freqs', PutMotorFreqs)
         res = p(left_hz,right_hz,time_ms)
         return res.accepted
     except rospy.ServiceException, e:
