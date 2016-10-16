@@ -2,11 +2,17 @@
 import sys, rospy
 from raspimouse_ros.msg import LightSensorValues
 
-def talker():
+if __name__ == '__main__':
+    freq = 10
+    if rospy.has_param('lightsensors_freq'):
+        freq = rospy.get_param('lightsensors_freq')
+        
+    rospy.set_param('freq', str(freq))
+
     devfile = '/dev/rtlightsensor0'
     rospy.init_node('rtlightsensors')
     pub = rospy.Publisher('lightsensors', LightSensorValues, queue_size=1)
-    rate = rospy.Rate(10)
+    rate = rospy.Rate(freq)
 
     while not rospy.is_shutdown():
         try:
@@ -23,9 +29,3 @@ def talker():
 
         rate.sleep()
 
-if __name__ == '__main__':
-    try:
-        talker()
-
-    except rospy.ROSInterruptException:
-        pass
