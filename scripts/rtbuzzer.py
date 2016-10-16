@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import rospy
-import time
 import actionlib
 from std_msgs.msg import UInt16
 from raspimouse_ros.msg import MusicAction, MusicResult, MusicFeedback
@@ -35,7 +34,7 @@ def exec_music(goal):
         if i < len(goal.durations):
             t = goal.durations[i]
 
-        time.sleep(t)
+        rospy.sleep(t)
 
     fb.remaining_steps = 0
     ms.publish_feedback(fb)
