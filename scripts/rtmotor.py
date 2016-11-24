@@ -46,8 +46,8 @@ def callback_cmd_vel(message):
     try:
         lf = open(lfile,'w')
         rf = open(rfile,'w')
-        lf.write(str(forward_hz - rot_hz) + '\n')
-        rf.write(str(forward_hz + rot_hz) + '\n')
+        lf.write(str(int(round(forward_hz - rot_hz))) + '\n')
+        rf.write(str(int(round(forward_hz + rot_hz))) + '\n')
     except:
         rospy.logerr("cannot write to rtmotor_raw_*")
 
