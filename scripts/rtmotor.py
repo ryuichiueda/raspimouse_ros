@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-import sys
+import sys,math
 import rospy
 from raspimouse_ros.srv import PutMotorFreqs
 from raspimouse_ros.srv import SwitchMotors
 from raspimouse_ros.msg import MotorFreqs
+from geometry_msgs.msg import Twist
 from std_msgs.msg import Bool
 
 def callback_motor_sw(message):
@@ -23,12 +24,30 @@ def callback_motor_raw(message):
     lfile = '/dev/rtmotor_raw_l0'
     rfile = '/dev/rtmotor_raw_r0'
 
-    print message
     try:
         lf = open(lfile,'w')
         rf = open(rfile,'w')
         print >> lf, str(message.left)
         print >> rf, str(message.right)
+    except:
+        rospy.logerr("cannot write to rtmotor_raw_*")
+
+    lf.close()
+    rf.close()
+
+def callback_cmd_vel(message):
+    lfile = '/dev/rtmotor_raw_l0'
+    rfile = '/dev/rtmotor_raw_r0'
+
+    #for forwarding
+    forward_hz = 80000.0*message.linear.x/(9*math.pi)
+    #for rotation
+    rot_hz = 400.0*message.angular.z/math.pi
+    try:
+        lf = open(lfile,'w')
+        rf = open(rfile,'w')
+        lf.write(str(forward_hz - rot_hz) + '\n')
+        rf.write(str(forward_hz + rot_hz) + '\n')
     except:
         rospy.logerr("cannot write to rtmotor_raw_*")
 
@@ -47,16 +66,10 @@ def callback_put_freqs(message):
 
     return True
         
-def listner():
+if __name__ == '__main__':
     rospy.init_node('rtmotor')
     sub = rospy.Subscriber('motor_raw', MotorFreqs, callback_motor_raw)
+    sub = rospy.Subscriber('cmd_vel', Twist, callback_cmd_vel)
     srv = rospy.Service('switch_motors', SwitchMotors, callback_motor_sw)
     srv = rospy.Service('put_motor_freqs', PutMotorFreqs, callback_put_freqs)
     rospy.spin()
-
-if __name__ == '__main__':
-    try:
-        listner()
-
-    except rospy.ROSInterruptException:
-        pass

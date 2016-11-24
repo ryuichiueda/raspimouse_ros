@@ -55,6 +55,9 @@ grep '^400 400$'
 
 #output should be 400Hz
 rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[0.1414, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
+
+cat /dev/rtmotor_raw_l0 /dev/rtmotor_raw_r0
+
 cat /dev/rtmotor_raw_l0 /dev/rtmotor_raw_r0	|
 awk '{print int($1+0.5)}'			|
 xargs -n 2					|
