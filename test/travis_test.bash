@@ -3,7 +3,7 @@
 roslaunch raspimouse_ros raspimouse.launch &
 sleep 20
 
-#publishing
+#publishing 1
 rostopic pub -1 /buzzer std_msgs/UInt16 -- 10
 rostopic pub -1 /motor_raw raspimouse_ros/MotorFreqs '123' '456'
 
@@ -17,7 +17,7 @@ rosservice call /switch_motors "'on': true"
 rostopic echo /lightsensors -n 1 > /tmp/test.lightsensors
 rostopic echo /switches -n 1 > /tmp/test.switches
 
-#output file test
+#output file test 1
 diff /tmp/test.lightsensors ./test/lightsensors_output
 diff /tmp/test.switches ./test/switches_output
 echo 10 | diff - /dev/rtbuzzer0
@@ -38,3 +38,31 @@ rostopic echo /switches -n 1 | grep 'run'
 echo 0 | sudo tee /dev/rtswitch0 && sleep 1
 echo 1 | sudo tee /dev/rtswitch0 && sleep 1
 rostopic echo /switches -n 1 | grep 'neutral'
+
+
+#################################################
+#/cmd_vel
+rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[0.1414, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
+
+#output should be 400Hz
+cat /dev/rtmotor_raw_l0 /dev/rtmotor_raw_r0	|
+awk '{print int($1+0.5)}'			|
+xargs -n 2					|
+grep '^400 400$'
+
+#################################################
+#/cmd_vel
+
+#output should be 400Hz
+rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[0.1414, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
+cat /dev/rtmotor_raw_l0 /dev/rtmotor_raw_r0	|
+awk '{print int($1+0.5)}'			|
+xargs -n 2					|
+grep '^400 401$'
+
+#output should be 200Hz and 600Hz
+rostopic pub -1 /cmd_vel geometry_msgs/Twist -- '[0.1414, 0.0, 0.0]' '[0.0, 0.0, 1.57]'
+cat /dev/rtmotor_raw_l0 /dev/rtmotor_raw_r0	|
+awk '{print int($1+0.5)}'			|
+xargs -n 2					|
+grep '^200 600$'
